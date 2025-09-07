@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Login • Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+  <script defer src="/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo"></span> <span>School Lost & Found</span></div>
+      <nav>
+        <div class="menu">
+          <a href="/" data-active>Home</a>
+          <a href="/report.html" data-active>Report Item</a>
+          <a href="/items.html" data-active>Browse</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1>Admin Login</h1>
+    <form id="loginForm" class="card" aria-describedby="status">
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" name="username" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" required type="password" autocomplete="current-password">
+      </div>
+      <button class="btn" type="submit">Log In</button>
+      <div id="status" class="helper" aria-live="polite" style="margin-top:.5rem"></div>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const status = document.getElementById('status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Signing in...';
+      const body = {
+        username: document.getElementById('username').value.trim(),
+        password: document.getElementById('password').value
+      };
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        status.textContent = data.error || 'Login failed';
+        return;
+      }
+      location.href = '/admin/dashboard.html';
+    });
+  </script>
+</body>
+</html>
