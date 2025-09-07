@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - School Lost and Found</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">LionHeart Lost & Found</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="report.html">Report Found Item</a></li>
+                    <li><a href="browse.html">Browse Items</a></li>
+                    <li><a href="admin.html" class="active">Admin Panel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Admin Item Management</h2>
+            <p>Review new submissions and manage the item database.</p>
+            
+            <div class="table-container">
+                <table id="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Item Name</th>
+                            <th>Date Found</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <!-- Admin items will be dynamically loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            <p id="no-admin-items-message" class="info-message" style="display: none;">There are no items to manage at this time.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025-2026 FBLA Website Coding & Development. Created by [Your Name/Team Name].</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
