@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Found Item - School Lost and Found</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">LionHeart Lost & Found</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="report.html" class="active">Report Found Item</a></li>
+                    <li><a href="browse.html">Browse Items</a></li>
+                    <li><a href="admin.html">Admin Panel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Report a Found Item</h2>
+            <p>Thank you for helping our school community! Please provide as much detail as possible.</p>
+            
+            <form id="report-form" class="styled-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" name="itemName" placeholder="e.g., Black Hydro Flask" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-category">Category</label>
+                    <select id="item-category" name="itemCategory" required>
+                        <option value="" disabled selected>Select a category...</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing & Apparel</option>
+                        <option value="books">Books & Notebooks</option>
+                        <option value="water-bottles">Water Bottles</option>
+                        <option value="keys">Keys & ID Cards</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location-found">Location Found</label>
+                    <input type="text" id="location-found" name="locationFound" placeholder="e.g., Library, 2nd floor" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date-found">Date Found</label>
+                    <input type="date" id="date-found" name="dateFound" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-description">Description</label>
+                    <textarea id="item-description" name="itemDescription" rows="4" placeholder="Add details like color, brand, or any identifying marks." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-photo">Upload a Photo</label>
+                    <input type="file" id="item-photo" name="itemPhoto" accept="image/*" required>
+                    <small>A clear photo helps the owner identify their item.</small>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit Report</button>
+            </form>
+            <div id="success-message" class="success-message" style="display: none;">
+                <p>Thank you! Your report has been submitted for review.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025-2026 FBLA Website Coding & Development. Created by [Your Name/Team Name].</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
