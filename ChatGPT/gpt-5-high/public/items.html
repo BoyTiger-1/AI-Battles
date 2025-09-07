@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Browse Found Items • Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/items.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo"></span> <span>School Lost & Found</span></div>
+      <nav>
+        <div class="menu">
+          <a href="/" data-active>Home</a>
+          <a href="/report.html" data-active>Report Item</a>
+          <a href="/items.html" data-active>Browse</a>
+          <a href="/admin/login.html">Admin</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1>Browse Found Items</h1>
+
+    <section class="card" aria-label="Search filters">
+      <form id="filterForm" role="search">
+        <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: .75rem">
+          <div class="field">
+            <label for="q">Keyword</label>
+            <input id="q" name="q" type="search" placeholder="Search title or description">
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="">All categories</option>
+              <option>Clothing</option>
+              <option>Electronics</option>
+              <option>Stationery</option>
+              <option>Water Bottle</option>
+              <option>Jewelry</option>
+              <option>ID/Access Card</option>
+              <option>Keys</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="location">Location</label>
+            <input id="location" name="location" placeholder="e.g., Library, Gym, Room 210">
+          </div>
+          <div class="field">
+            <label for="sort">Sort</label>
+            <select id="sort" name="sort">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="from">From date</label>
+            <input id="from" name="date_from" type="date">
+          </div>
+          <div class="field">
+            <label for="to">To date</label>
+            <input id="to" name="date_to" type="date">
+          </div>
+          <div class="field" style="align-self:end">
+            <button class="btn" type="submit">Apply</button>
+          </div>
+          <div class="field" style="align-self:end">
+            <button class="btn secondary" id="clearBtn" type="button">Clear</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="resultsHeading">
+      <h2 id="resultsHeading">Results</h2>
+      <div id="status" class="helper" aria-live="polite"></div>
+      <div id="results" class="grid cards" aria-live="polite"></div>
+      <div class="toolbar" style="justify-content: space-between; margin-top:.75rem">
+        <button class="btn secondary" id="prevBtn" disabled>Previous</button>
+        <span id="pageInfo" class="helper"></span>
+        <button class="btn secondary" id="nextBtn" disabled>Next</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
