@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Item Details • Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/item.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo"></span> <span>School Lost & Found</span></div>
+      <nav>
+        <div class="menu">
+          <a href="/" data-active>Home</a>
+          <a href="/report.html" data-active>Report Item</a>
+          <a href="/items.html" data-active>Browse</a>
+          <a href="/admin/login.html">Admin</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section id="details" class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem">
+      <div class="card" id="photoWrap">
+        <img id="photo" alt="" style="width:100%; height:auto; border-radius:10px; background:#eee;">
+      </div>
+      <div class="card">
+        <h1 id="title">Loading...</h1>
+        <div class="meta">
+          <span class="badge" id="category"></span>
+          <span id="date_found"></span> • <span id="location_found"></span>
+        </div>
+        <p id="description" style="margin-top:.75rem"></p>
+        <div id="statusItem" class="helper"></div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Claim this item" style="margin-top:1rem">
+      <h2>Claim or Ask About This Item</h2>
+      <form id="claimForm" enctype="multipart/form-data" aria-describedby="claimStatus">
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem">
+          <div class="field">
+            <label for="claimant_name">Your name</label>
+            <input id="claimant_name" name="claimant_name" required maxlength="80">
+          </div>
+          <div class="field">
+            <label for="claimant_email">Your email</label>
+            <input id="claimant_email" name="claimant_email" required type="email" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="student_id">Student ID (optional)</label>
+            <input id="student_id" name="student_id" maxlength="40">
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required rows="3" maxlength="1500"
+              placeholder="Describe proof of ownership (unique marks, wallpaper, serial number, etc.)"></textarea>
+          </div>
+          <div class="field">
+            <label for="proof">Upload proof (optional)</label>
+            <input id="proof" name="proof" type="file" accept="image/jpeg,image/png,image/webp">
+          </div>
+        </div>
+        <div class="toolbar" style="margin-top: .5rem">
+          <button class="btn" type="submit">Submit Claim</button>
+          <a class="btn secondary" href="/items.html">Back to Browse</a>
+        </div>
+        <div id="claimStatus" class="helper" aria-live="polite" style="margin-top:.5rem"></div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
