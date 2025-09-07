@@ -1,1 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>School Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Report found items, search for lost belongings, and manage claims.">
+  <link rel="stylesheet" href="/css/style.css">
+  <script defer src="/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header role="banner">
+    <div class="container nav">
+      <div class="brand" aria-label="Site Logo and Title">
+        <span class="logo" role="img" aria-label="Lost and Found logo"></span>
+        <span>School Lost & Found</span>
+      </div>
+      <nav aria-label="Main">
+        <div class="menu">
+          <a href="/" data-active>Home</a>
+          <a href="/report.html" data-active>Report Item</a>
+          <a href="/items.html" data-active>Browse</a>
+          <a href="/admin/login.html">Admin</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
+  <main id="main" class="container">
+    <section class="hero" aria-label="Overview and quick actions">
+      <div class="card">
+        <h1>Find it fast. Return it right.</h1>
+        <p>Report found items, search for your lost belongings, and submit a claim to pick them up. This site keeps our community organized and helps items get back to their owners quickly.</p>
+        <div class="toolbar" role="group" aria-label="Primary actions">
+          <a class="btn" href="/report.html">Report a Found Item</a>
+          <a class="btn secondary" href="/items.html">Browse Found Items</a>
+        </div>
+        <div class="alert info" role="status" aria-live="polite" style="margin-top:1rem">
+          Tip: Use <kbd>Ctrl</kbd> + <kbd>F</kbd> on the Browse page to quickly find keywords.
+        </div>
+      </div>
+      <div class="card" aria-label="Quick search">
+        <h2>Quick Search</h2>
+        <form action="/items.html" method="get" role="search" aria-label="Quick search form">
+          <div class="field">
+            <label for="q">Keyword</label>
+            <input id="q" name="q" type="search" placeholder="e.g., AirPods, hoodie, water bottle">
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="">All categories</option>
+              <option>Clothing</option>
+              <option>Electronics</option>
+              <option>Stationery</option>
+              <option>Water Bottle</option>
+              <option>Jewelry</option>
+              <option>ID/Access Card</option>
+              <option>Keys</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button class="btn" type="submit">Search Items</button>
+        </form>
+      </div>
+    </section>
+
+    <section aria-labelledby="latest">
+      <h2 id="latest">Latest approved items</h2>
+      <div id="latestGrid" class="grid cards" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>© <span id="year"></span> School Lost & Found. Accessibility-first design. Photos used only for item identification.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function loadLatest() {
+      try {
+        const res = await fetch('/api/items?status=approved&limit=8');
+        const data = await res.json();
+        const grid = document.getElementById('latestGrid');
+        if (!data.items || data.items.length === 0) {
+          grid.innerHTML = '<p class="helper">No items yet. Be the first to report a found item!</p>';
+          return;
+        }
+        grid.innerHTML = data.items.map(it => `
+          <article class="card item-card" aria-label="Found item">
+            <a href="/item.html?id=${it.id}" aria-label="View details: ${it.title}">
+              <img src="${it.photo_filename ? '/uploads/' + it.photo_filename : 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22400%22 height=%22250%22 fill=%22%23f2f2f2%22/><text x=%2220%22 y=%22130%22 fill=%22%23999%22 font-family=%22Arial%22 font-size=%2220%22>Photo not provided</text></svg>'}"
+                alt="${it.title ? 'Photo of ' + it.title : 'No photo available'}">
+            </a>
+            <h3 style="margin:.5rem 0">${it.title}</h3>
+            <div class="meta">
+              <span class="badge">${it.category}</span>
+              <span>Found: ${it.date_found}</span>
+              <span>Location: ${it.location_found}</span>
+            </div>
+            <div style="margin-top:.5rem">
+              <a class="btn secondary" href="/item.html?id=${it.id}">View & Claim</a>
+            </div>
+          </article>
+        `).join('');
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    loadLatest();
+  </script>
+</body>
+</html>
