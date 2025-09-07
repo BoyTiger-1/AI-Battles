@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Dashboard • Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/admin.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo"></span> <span>Admin • Lost & Found</span></div>
+      <nav>
+        <div class="menu">
+          <a href="/">Public Site</a>
+          <a href="/admin/dashboard.html" class="active">Dashboard</a>
+          <a href="#" id="logoutLink">Logout</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1>Dashboard</h1>
+
+    <section class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem">
+      <div class="card" id="statsCard" aria-live="polite">
+        <h2>Stats</h2>
+        <div id="stats">Loading...</div>
+      </div>
+      <div class="card">
+        <h2>Change Password</h2>
+        <form id="pwForm">
+          <div class="field">
+            <label for="current">Current password</label>
+            <input id="current" name="current" type="password" required>
+          </div>
+          <div class="field">
+            <label for="next">New password</label>
+            <input id="next" name="next" type="password" required minlength="8">
+          </div>
+          <button class="btn" type="submit">Change</button>
+          <div id="pwStatus" class="helper" aria-live="polite" style="margin-top:.4rem"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1rem">
+      <div class="toolbar" style="justify-content: space-between">
+        <h2>Items</h2>
+        <div>
+          <label for="itemStatus" class="helper" style="margin-right:.35rem">Filter:</label>
+          <select id="itemStatus">
+            <option value="">All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="claimed">Claimed</option>
+            <option value="archived">Archived</option>
+          </select>
+          <input id="itemQ" placeholder="Keyword" style="margin-left:.35rem">
+          <button class="btn secondary" id="loadItemsBtn">Load</button>
+        </div>
+      </div>
+      <div style="overflow:auto">
+        <table class="table" aria-label="Items table">
+          <thead><tr>
+            <th>ID</th><th>Title</th><th>Category</th><th>Found</th><th>Status</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="itemsTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1rem">
+      <div class="toolbar" style="justify-content: space-between">
+        <h2>Claims</h2>
+        <div>
+          <label for="claimStatusSel" class="helper" style="margin-right:.35rem">Filter:</label>
+          <select id="claimStatusSel">
+            <option value="">All</option>
+            <option>new</option>
+            <option>in_review</option>
+            <option>approved</option>
+            <option>rejected</option>
+            <option>resolved</option>
+          </select>
+          <button class="btn secondary" id="loadClaimsBtn">Load</button>
+        </div>
+      </div>
+      <div style="overflow:auto">
+        <table class="table" aria-label="Claims table">
+          <thead><tr>
+            <th>ID</th><th>Item</th><th>Claimant</th><th>Email</th><th>Student ID</th><th>Status</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="claimsTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
