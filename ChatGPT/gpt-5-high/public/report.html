@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Report a Found Item • Lost & Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/report.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo"></span> <span>School Lost & Found</span></div>
+      <nav>
+        <div class="menu">
+          <a href="/" data-active>Home</a>
+          <a href="/report.html" data-active>Report Item</a>
+          <a href="/items.html" data-active>Browse</a>
+          <a href="/admin/login.html">Admin</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1>Report a Found Item</h1>
+    <p class="helper">Provide details below. Your submission will be reviewed by a site admin before it appears publicly.</p>
+
+    <form id="reportForm" class="card" enctype="multipart/form-data" aria-describedby="status">
+      <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem">
+        <div class="field">
+          <label for="title">Item name</label>
+          <input id="title" name="title" required maxlength="120" placeholder="e.g., Black hoodie (Nike)">
+        </div>
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option>Clothing</option>
+            <option>Electronics</option>
+            <option>Stationery</option>
+            <option>Water Bottle</option>
+            <option>Jewelry</option>
+            <option>ID/Access Card</option>
+            <option>Keys</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field" style="grid-column: 1 / -1">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" required maxlength="2000" rows="4"
+            placeholder="Describe the item, notable features, colors, stickers, etc."></textarea>
+        </div>
+        <div class="field">
+          <label for="location_found">Found at</label>
+          <input id="location_found" name="location_found" required maxlength="120" placeholder="e.g., Library second floor">
+        </div>
+        <div class="field">
+          <label for="date_found">Date found</label>
+          <input id="date_found" name="date_found" required type="date">
+        </div>
+        <div class="field">
+          <label for="photo">Photo (JPEG/PNG/WEBP, up to 5MB)</label>
+          <input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp">
+        </div>
+        <div class="field">
+          <label for="reporter_name">Your name</label>
+          <input id="reporter_name" name="reporter_name" required maxlength="80">
+        </div>
+        <div class="field">
+          <label for="reporter_email">Your email</label>
+          <input id="reporter_email" name="reporter_email" required type="email" maxlength="120">
+        </div>
+      </div>
+
+      <div class="alert info" style="margin-top:.5rem">
+        Note: You agree that the details are accurate and that photos do not contain sensitive information.
+      </div>
+
+      <div class="toolbar" style="margin-top:1rem">
+        <button class="btn" type="submit">Submit for Review</button>
+        <a class="btn secondary" href="/items.html">Cancel</a>
+      </div>
+      <div id="status" class="helper" aria-live="polite" style="margin-top:.5rem"></div>
+    </form>
+  </main>
+</body>
+</html>
